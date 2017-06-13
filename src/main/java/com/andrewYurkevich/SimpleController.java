@@ -2,6 +2,7 @@ package com.andrewYurkevich;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -12,9 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class SimpleController {
 
     @RequestMapping("/")
-    public ModelAndView show() {
+    public @ResponseBody String index() {
+
+        return "STRING!!!!";
+    }
+
+    @RequestMapping("/main")
+    public ModelAndView main() {
         ModelAndView view = new ModelAndView();
-        view.setViewName("index");
+        view.setViewName("mainPage");
         return view;
     }
 
