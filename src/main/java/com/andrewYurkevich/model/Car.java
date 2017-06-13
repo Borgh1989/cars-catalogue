@@ -15,14 +15,20 @@ public class Car implements Serializable {
 
     @Id
     private int id;
+
     @Column(name="NAME")
     private String name;
+
     @Column(name="SPEED")
     private int speed;
+
     @Column(name="VOLUME")
     private double volume;
+
     @Column(name="TYPE")
     private String type;
+
+
 
     public Car() {
 
@@ -93,5 +99,16 @@ public class Car implements Serializable {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", speed=" + speed +
+                ", volume=" + volume +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
