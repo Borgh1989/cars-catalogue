@@ -1,8 +1,6 @@
 package com.andrewYurkevich.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -11,9 +9,12 @@ import java.io.Serializable;
 
 
 @Entity
+@Table(name="car")
 public class Car implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID")
     private int id;
 
     @Column(name="NAME")

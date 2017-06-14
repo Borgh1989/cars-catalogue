@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-MAIN PAGE
-
+NEW CAR
 </body>
 </html>
