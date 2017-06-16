@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th = "http://www.thymeleaf.org">
+<head>
+
+    <title>Main Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>MAIN PAGE</h1>
+
+
+    <!--/*@thymesVar id="carList" type="com.andrewYurkevich.model.Car"*/-->
+    <table>
+        <th:block th:each="car : ${carList}">
+            <tr>
+                <td th:text="${car.name}"></td>
+                <td th:text="${car.speed}"></td>
+            </tr>
+        </th:block>
+    </table>
+
+
+</body>
+</html>

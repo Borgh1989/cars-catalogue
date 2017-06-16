@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+    <head>
+
+        <title>car</title>
+        <meta http-equiv = "Content-Type" content = "text/html; charset = UTF-8" />
+    </head>
+
+    <body>
+        <h1>VIEW CAR</h1>
+        <!--/*@thymesVar id="createdCar" type="com.andrewYurkevich.model.Car"*/-->
+        <p th:text="'name of car is '+${createdCar.name}"></p>
+        <p th:text="'speed of car is '+${createdCar.speed}"></p>
+        <a href="/newCar">create new Car</a>
+    </body>
+</html>
