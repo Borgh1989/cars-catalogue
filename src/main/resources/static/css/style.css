@@ -1,0 +1,13 @@
+h1 {
+    color: #4a3cba;
+    font-family: Arial, serif;
+    text-align: center;
+}
+
+table {
+    font-family: Arial, serif;
+    margin: auto;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+

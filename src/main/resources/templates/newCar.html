@@ -4,8 +4,9 @@
       xmlns:th = "http://www.thymeleaf.org">
     <head>
 
-        <title>Main Page</title>
+        <title>New car</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="css/style.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <h1>CREATE CAR</h1>
@@ -14,12 +15,15 @@
         <form action="#" th:action="@{/viewCar}" th:object="${car}" method="post">
             <p>Name <input type="text" th:field="*{name}" /></p>
             <p>Speed <input type="text" th:field="*{speed}" /></p>
-
-            <p>Volume</p>
-            <p>Type</p>
+            <p>Volume <input type="text" th:field="*{volume}"/></p>
+            <p>Type <input type="text" th:field="*{type}"/></p>
 
             <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
         </form>
+
+
+            <button type="reset" onclick="history.back()">Back</button>
+
 
     </body>
 </html>

@@ -4,23 +4,38 @@
       xmlns:th = "http://www.thymeleaf.org">
 <head>
 
-    <title>Main Page</title>
+    <title>Main page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <h1>MAIN PAGE</h1>
+    <form>
 
+    </form>
 
     <!--/*@thymesVar id="carList" type="com.andrewYurkevich.model.Car"*/-->
     <table>
+        <tr>
+            <th>NAME OF CAR</th>
+            <th>MAX SPEED</th>
+            <th>VOLUME</th>
+            <th>TYPE</th>
+        </tr>
+
         <th:block th:each="car : ${carList}">
-            <tr>
-                <td th:text="${car.name}"></td>
-                <td th:text="${car.speed}"></td>
-            </tr>
+        <tr>
+            <td th:text="${car.name}"></td>
+            <td th:text="${car.speed}"></td>
+            <td th:text="${car.volume}"></td>
+            <td th:text="${car.type}"></td>
+
+        </tr>
         </th:block>
     </table>
 
-
+    <form action="/newCar">
+        <button type="submit">create new car</button>
+    </form>
 </body>
 </html>
