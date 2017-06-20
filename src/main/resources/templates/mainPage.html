@@ -33,7 +33,9 @@
             <td th:text="${car.speed}"></td>
             <td th:text="${car.volume}"></td>
             <td th:text="${car.type}"></td>
-            <a th:href="@{/updateCar/(id=${car.id})}">update Car</a>
+            <td><a th:href="@{/updateCar/(id=${car.id})}">update Car</a></td>
+            <td><a th:href="@{/deleteCar/(id=${car.id})}">delete Car</a></td>
+
         </tr>
 
         </th:block>

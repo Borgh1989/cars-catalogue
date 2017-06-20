@@ -41,6 +41,7 @@ public class SimpleController {
             carRepository.saveAndFlush(car);
         else {
             Car currentCar = carRepository.findOne(car.getId());
+
             currentCar.setName(car.getName());
             currentCar.setSpeed(car.getSpeed());
             currentCar.setType(car.getType());
@@ -72,6 +73,13 @@ public class SimpleController {
         carRepository.saveAndFlush(currentCar);
         model.addAttribute("createdCar", currentCar);
         return "updatedCar";
+    }
+
+    @RequestMapping(value = "/deleteCar", method = RequestMethod.GET)
+    public String deleteCar(int id, Model model) {
+        carRepository.delete(id);
+        model.addAttribute("carList", carRepository.findAll());
+        return "mainPage";
     }
 
 
