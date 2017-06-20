@@ -14,28 +14,10 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer>{
 
-    @Override
-    Car saveAndFlush(Car car);
-
-    @Override
-    List<Car> findAll();
-
-    @Override
-    List<Car> findAll(Sort sort);
-
-    @Override
-    Car findOne(Integer integer);
 
     Car findByName(String name);
 
-    @Override
-    void delete(Integer integer);
 
-    @Override
-    void delete(Car car);
-
-    @Override
-    void deleteAll();
 
 
 }
