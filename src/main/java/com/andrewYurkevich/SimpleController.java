@@ -5,10 +5,7 @@ import com.andrewYurkevich.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -32,6 +29,7 @@ public class SimpleController {
 
     @RequestMapping(value = "/newCar", method = RequestMethod.GET)
     public String newCar(Model model) {
+
         model.addAttribute("car", new Car());
 
         return "newCar";
@@ -39,18 +37,41 @@ public class SimpleController {
 
     @RequestMapping(value = "/viewCar", method = RequestMethod.POST)
     public String viewCar(@ModelAttribute Car car, Model model) {
+        if(car.getId()==0)
+            carRepository.saveAndFlush(car);
+        else {
+            Car currentCar = carRepository.findOne(car.getId());
+            currentCar.setName(car.getName());
+            currentCar.setSpeed(car.getSpeed());
+            currentCar.setType(car.getType());
+            currentCar.setVolume(car.getVolume());
+            carRepository.saveAndFlush(currentCar);
+        }
+
         model.addAttribute("createdCar", car);
-        carRepository.saveAndFlush(car);
         return "viewCar";
     }
 
 
 
-    @RequestMapping(value = "/updateCAr", method = RequestMethod.POST)
-    public String updateCar(@ModelAttribute Car car) {
+    @RequestMapping(value = "/updateCar", method = RequestMethod.GET)
+    public String updateCar(int id, Model model) {
 
-        carRepository.saveAndFlush(car);
+        model.addAttribute("editCar", carRepository.findOne(id));
         return "updateCar";
+    }
+
+    @RequestMapping(value = "/updatedCar", method = RequestMethod.POST)
+    public String updatedCar(int id, Car car, Model model) {
+        Car currentCar = carRepository.findOne(id);
+        currentCar.setName(car.getName());
+        currentCar.setSpeed(car.getSpeed());
+        currentCar.setType(car.getType());
+        currentCar.setVolume(car.getVolume());
+
+        carRepository.saveAndFlush(currentCar);
+        model.addAttribute("createdCar", currentCar);
+        return "updatedCar";
     }
 
 

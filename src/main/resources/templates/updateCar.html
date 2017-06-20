@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th = "http://www.thymeleaf.org">
 <head>
 
-    <title>Change car</title>
+    <title>View car</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet"/>
 </head>
+
 <body>
-<h1>CHANGE CAR</h1>
+    <h1>UPDATE CAR</h1>
+    <!--/*@thymesVar id="createdCar" type="com.andrewYurkevich.model.Car"*/-->
+    <p th:text="'name of car is '+${editCar.name}"></p>
+
+    <form th:action="@{/updatedCar/(id=${editCar.id})}" method="post" th:object="${editcar}">
+        <p th:text="'id of car is '+${editCar.id}"></p>
+        <input type="text" value="${editCar.name}" th:field="${editCar.name}"/>
+        <input type="text" value="${editCar.speed}" th:field="${editCar.speed}"/>
+        <input type="text" value="${editCar.volume}" th:field="${editCar.volume}"/>
+        <input type="text" value="${editCar.type}" th:field="${editCar.type}"/>
+        <input type="submit" value="Submit" />
+    </form>
 
 
 
-
+    <a href="/">main page</a>
+    <button type="reset" onclick="history.back()">Back</button>
 </body>
 </html>

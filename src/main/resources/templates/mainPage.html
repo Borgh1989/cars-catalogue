@@ -6,7 +6,7 @@
 
     <title>Main page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 <h1>MAIN PAGE</h1>
@@ -17,21 +17,27 @@
     <!--/*@thymesVar id="carList" type="com.andrewYurkevich.model.Car"*/-->
     <table>
         <tr>
+            <th>ID</th>
             <th>NAME OF CAR</th>
             <th>MAX SPEED</th>
             <th>VOLUME</th>
             <th>TYPE</th>
         </tr>
 
+
         <th:block th:each="car : ${carList}">
+
         <tr>
+            <td th:text="${car.id}"></td>
             <td th:text="${car.name}"></td>
             <td th:text="${car.speed}"></td>
             <td th:text="${car.volume}"></td>
             <td th:text="${car.type}"></td>
-
+            <a th:href="@{/updateCar/(id=${car.id})}">update Car</a>
         </tr>
+
         </th:block>
+
     </table>
 
     <form action="/newCar">
