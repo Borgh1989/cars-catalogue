@@ -17,7 +17,7 @@ public class CarServiceImplTest {
 
 
 
-    CarService sut;
+
 
     @Test
     public void addCar() throws Exception {

@@ -1,4 +1,4 @@
-package com.andrewYurkevich;
+package com.andrewYurkevich.controller;
 
 import com.andrewYurkevich.model.Car;
 import com.andrewYurkevich.repository.CarRepository;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-public class SimpleController {
+public class CarController {
 
     @Autowired
     private CarService carService;
