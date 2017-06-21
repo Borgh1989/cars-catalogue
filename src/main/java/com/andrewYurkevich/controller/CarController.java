@@ -55,7 +55,7 @@ public class CarController {
     }
 
     @RequestMapping(value = "/updatedCar", method = RequestMethod.POST)
-    public String updatedCar(int id, Car car, Model model) {
+    public String updatedCar(Car car, Model model) {
           Car currentCar = this.carService.editCar(car);
 
         model.addAttribute("createdCar", currentCar);

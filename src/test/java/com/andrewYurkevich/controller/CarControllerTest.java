@@ -41,7 +41,7 @@ public class CarControllerTest {
     @Test
     public void test_getAllCarsInMain_resultListCars() throws Exception {
         //prepare
-        List<Car> expectedCars = Arrays.asList(new Car(), new Car(), new Car());
+        List<Car> expectedCars = Arrays.asList(mock(Car.class), mock(Car.class), mock(Car.class));
         when(carService.getAll()).thenReturn(expectedCars);
         //testing
         String pageName = sut.main(model);
@@ -54,60 +54,57 @@ public class CarControllerTest {
     @Test
     public void test_createNewCar_resultNewCar() throws Exception {
         //prepare
-        Car car = new Car();
+        Car expectedCar = new Car();
         //testing
         String pageName = sut.newCar(model);
         //validate
         assertEquals("newCar", pageName);
-        assertEquals(car, model.asMap().get("car"));
+        assertEquals(expectedCar, model.asMap().get("car"));
 
     }
 
     @Test
     public void test_addCarToBase_reasultAddedCar() throws Exception {
         //prepare
-        Car car = new Car();
-        when(carService.addCar(car)).thenReturn(car);
+        Car expectedCar = mock(Car.class);
+        when(carService.addCar(expectedCar)).thenReturn(expectedCar);
         //testing
-        String pageName = sut.viewCar(car, model);
+        String pageName = sut.viewCar(expectedCar, model);
         //validate
         assertEquals("viewCar", pageName);
-        assertSame(car, model.asMap().get("createdCar"));
+        assertSame(expectedCar, model.asMap().get("createdCar"));
 
     }
 
     @Test
     public void test_findToUpdateCar_resultFindedCarToUpdate() throws Exception {
         //prepare
-        Car car = new Car();
+        Car expectedCar = mock(Car.class);
         int id = 1;
-        when(carService.getById(id)).thenReturn(car);
+        when(carService.getById(id)).thenReturn(expectedCar);
         //testing
         String pageName = sut.updateCar(id, model);
         //validate
         assertEquals("updateCar", pageName);
-        assertSame(car, model.asMap().get("editCar"));
+        assertSame(expectedCar, model.asMap().get("editCar"));
     }
 
     @Test
     public void test_updatedCar_resultUpdatedCar() throws Exception {
         //prepare
-        Car car = new Car();
-        int id = 1;
-        when(carService.editCar(car)).thenReturn(car);
+        Car expectedCar = mock(Car.class);
+        when(carService.editCar(expectedCar)).thenReturn(expectedCar);
         //testing
-        String pageName = sut.updatedCar(id, car, model);
+        String pageName = sut.updatedCar(expectedCar, model);
         //validate
         assertEquals("updatedCar", pageName);
-        assertSame(car, model.asMap().get("createdCar"));
+        assertSame(expectedCar, model.asMap().get("createdCar"));
     }
 
     @Test
     public void test_deleteCar_resultDeletedCar() throws Exception {
         //prepare
         int id = 1;
-        Car car = new Car();
-
         List<Car> expectedCars = Arrays.asList(new Car(), new Car(), new Car());
         when(carService.getAll()).thenReturn(expectedCars);
         //testing
