@@ -1,8 +1,6 @@
 package com.andrewYurkevich.controller;
 
-import com.andrewYurkevich.controller.CarController;
 import com.andrewYurkevich.model.Car;
-import com.andrewYurkevich.repository.CarRepository;
 import com.andrewYurkevich.service.CarService;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,9 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
@@ -33,35 +29,34 @@ public class CarControllerTest {
     @Mock
     private CarService carService;
 
+    @InjectMocks
+    private CarController sut;
+
 
     private Model model;
-
 
     @Before
     public void setUp() throws Exception {
         model = new ExtendedModelMap();
     }
 
-    @InjectMocks
-    private CarController sut;
-
 
 
     @Test
-    public void main() throws Exception {
+    public void test_getAllCarsInMain_resultListCars() throws Exception {
         //prepare
         List<Car> expectedCars = Arrays.asList(new Car(), new Car(), new Car());
         when(carService.getAll()).thenReturn(expectedCars);
         //testing
-        String result = sut.main(model);
+        String pageName = sut.main(model);
         //validate
-        assertEquals("Message","mainPage", result);
+        assertEquals("Message","mainPage", pageName);
         assertSame(expectedCars, model.asMap().get("carList"));
 
     }
 
     @Test
-    public void test_addingNewCar_resultAddedCar() throws Exception {
+    public void test_createNewCar_resultNewCar() throws Exception {
         //prepare
         Car car = new Car();
         //testing
@@ -73,21 +68,57 @@ public class CarControllerTest {
     }
 
     @Test
-    public void viewCar() throws Exception {
-
+    public void test_addCarToBase_reasultAddedCar() throws Exception {
+        //prepare
+        Car car = new Car();
+        when(carService.addCar(car)).thenReturn(car);
+        //testing
+        String pageName = sut.viewCar(car, model);
+        //validate
+        assertEquals("viewCar", pageName);
+        assertSame(car, model.asMap().get("createdCar"));
 
     }
 
     @Test
-    public void updateCar() throws Exception {
+    public void test_findToUpdateCar_resultFindedCarToUpdate() throws Exception {
+        //prepare
+        Car car = new Car();
+        int id = 1;
+        when(carService.getById(id)).thenReturn(car);
+        //testing
+        String pageName = sut.updateCar(id, model);
+        //validate
+        assertEquals("updateCar", pageName);
+        assertSame(car, model.asMap().get("editCar"));
     }
 
     @Test
-    public void updatedCar() throws Exception {
+    public void test_updatedCar_resultUpdatedCar() throws Exception {
+        //prepare
+        Car car = new Car();
+        int id = 1;
+        when(carService.editCar(car)).thenReturn(car);
+        //testing
+        String pageName = sut.updatedCar(id, car, model);
+        //validate
+        assertEquals("updatedCar", pageName);
+        assertSame(car, model.asMap().get("createdCar"));
     }
 
     @Test
-    public void deleteCar() throws Exception {
+    public void test_deleteCar_resultDeletedCar() throws Exception {
+        //prepare
+        int id = 1;
+        Car car = new Car();
+
+        List<Car> expectedCars = Arrays.asList(new Car(), new Car(), new Car());
+        when(carService.getAll()).thenReturn(expectedCars);
+        //testing
+        String pageName = sut.deleteCar(id, model);
+        //validate
+        assertEquals("mainPage", pageName);
+        assertSame(expectedCars, model.asMap().get("carList"));
     }
 
 }
