@@ -1,6 +1,10 @@
 package com.andrewYurkevich.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -18,15 +22,19 @@ public class Car implements Serializable {
     private int id;
 
     @Column(name="NAME")
+    @NotNull
+    @Size(min=2, max=30)
     private String name;
 
     @Column(name="SPEED")
+    @Max(value = 500)
     private int speed;
 
     @Column(name="VOLUME")
     private double volume;
 
     @Column(name="TYPE")
+    @Size(max=30)
     private String type;
 
 

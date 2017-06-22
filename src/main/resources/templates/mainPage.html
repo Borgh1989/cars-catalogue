@@ -9,43 +9,70 @@
     <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<h1>MAIN PAGE</h1>
-    <form>
+    <h1>CAR CATALOGUE</h1>
+    <h2>Main page</h2>
+
+    <form th:action="@{/search}" method="get">
+    <p><select name="search">
+    <option th:disabled="${#void}" >select attribute</option>
+    <option th:value="${'AUDI'}">name</option>
+
+    <!--<option ></option>-->
+    <!--<option ></option>-->
+    <!--<option ></option>-->
+
+    </select></p>
+    <p><input type="submit" value="sorting"/></p>
+    </form>
+
+
+    <form th:action="@{/search}" method="get">
+        <p>Search by name</p>
+        <p><label><input type="search" placeholder="quick search" name="search"/></label> <input type="submit" value="search"/></p>
 
     </form>
 
-    <!--/*@thymesVar id="carList" type="com.andrewYurkevich.model.Car"*/-->
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>NAME OF CAR</th>
-            <th>MAX SPEED</th>
-            <th>VOLUME</th>
-            <th>TYPE</th>
-            <th></th>
-            <th></th>
-        </tr>
+    <div class="div">
+
+        <h3>List of cars</h3>
+        <!--/*@thymesVar id="carList" type="com.andrewYurkevich.model.Car"*/-->
+
+        <form action="/newCar">
+            <button type="submit">create new car</button>
+        </form>
+        <br/>
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>NAME OF CAR</th>
+                <th>MAX SPEED</th>
+                <th>VOLUME</th>
+                <th>TYPE</th>
+                <th>UPDATING</th>
+                <th>DELETING</th>
+                <th>WATCHING</th>
+            </tr>
 
 
-        <th:block th:each="car : ${carList}">
+            <th:block th:each="car : ${carList}">
 
-        <tr>
-            <td th:text="${car.id}"></td>
-            <td th:text="${car.name}"></td>
-            <td th:text="${car.speed}"></td>
-            <td th:text="${car.volume}"></td>
-            <td th:text="${car.type}"></td>
-            <td><a th:href="@{/updateCar/(id=${car.id})}">update Car</a></td>
-            <td><a th:href="@{/deleteCar/(id=${car.id})}">delete Car</a></td>
+            <tr>
+                <td th:text="${car.id}"></td>
+                <td th:text="${car.name}"></td>
+                <td th:text="${car.speed}"></td>
+                <td th:text="${car.volume}"></td>
+                <td th:text="${car.type}"></td>
+                <td><a th:href="@{/updateCar/(id=${car.id})}">update Car</a></td>
+                <td><a th:href="@{/deleteCar/(id=${car.id})}">delete Car</a></td>
+                <td><a th:href="@{/viewCar/(id=${car.id})}">see car</a></td>
 
-        </tr>
+            </tr>
 
-        </th:block>
+            </th:block>
 
-    </table>
+        </table>
 
-    <form action="/newCar">
-        <button type="submit">create new car</button>
-    </form>
+    </div>
 </body>
 </html>

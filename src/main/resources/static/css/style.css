@@ -1,4 +1,10 @@
-h1 {
+h1, h2, h3 {
+    color: #4a3cba;
+    font-family: Arial, serif;
+    text-align: center;
+}
+
+.div {
     color: #4a3cba;
     font-family: Arial, serif;
     text-align: center;

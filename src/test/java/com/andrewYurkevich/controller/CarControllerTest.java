@@ -11,6 +11,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+
 import java.util.Arrays;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -67,11 +69,12 @@ public class CarControllerTest {
     public void test_addCarToBase_reasultAddedCar() throws Exception {
         //prepare
         Car expectedCar = mock(Car.class);
+        BindingResult bindingResult = mock(BindingResult.class);
         when(carService.addCar(expectedCar)).thenReturn(expectedCar);
         //testing
-        String pageName = sut.viewCar(expectedCar, model);
+        String pageName = sut.viewCar(expectedCar, bindingResult, model);
         //validate
-        assertEquals("viewCar", pageName);
+        assertEquals("createdCar", pageName);
         assertSame(expectedCar, model.asMap().get("createdCar"));
 
     }
@@ -92,10 +95,12 @@ public class CarControllerTest {
     @Test
     public void test_updatedCar_resultUpdatedCar() throws Exception {
         //prepare
+        int id = 1;
         Car expectedCar = mock(Car.class);
+        BindingResult bindingResult = mock(BindingResult.class);
         when(carService.editCar(expectedCar)).thenReturn(expectedCar);
         //testing
-        String pageName = sut.updatedCar(expectedCar, model);
+        String pageName = sut.updatedCar(id, expectedCar, bindingResult, model);
         //validate
         assertEquals("updatedCar", pageName);
         assertSame(expectedCar, model.asMap().get("createdCar"));
@@ -110,7 +115,7 @@ public class CarControllerTest {
         //testing
         String pageName = sut.deleteCar(id, model);
         //validate
-        assertEquals("mainPage", pageName);
+        assertEquals("redirect:/", pageName);
         assertSame(expectedCars, model.asMap().get("carList"));
     }
 
