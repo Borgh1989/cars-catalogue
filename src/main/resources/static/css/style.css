@@ -15,5 +15,10 @@ table {
     margin: auto;
     border: 2px solid black;
     border-collapse: collapse;
+    width: 800px;
+}
+
+body {
+    background: #d8f0ff;
 }
 

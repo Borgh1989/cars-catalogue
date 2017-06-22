@@ -51,21 +51,21 @@
                 <th>TYPE</th>
                 <th>UPDATING</th>
                 <th>DELETING</th>
-                <th>WATCHING</th>
+
             </tr>
 
 
             <th:block th:each="car : ${carList}">
 
             <tr>
-                <td th:text="${car.id}"></td>
-                <td th:text="${car.name}"></td>
+                <td th:text="${car.id}"> </td>
+                <td><a th:href="@{/viewCar/(id=${car.id})}"><p th:text="${car.name}"></p></a></td>
                 <td th:text="${car.speed}"></td>
                 <td th:text="${car.volume}"></td>
                 <td th:text="${car.type}"></td>
                 <td><a th:href="@{/updateCar/(id=${car.id})}">update Car</a></td>
                 <td><a th:href="@{/deleteCar/(id=${car.id})}">delete Car</a></td>
-                <td><a th:href="@{/viewCar/(id=${car.id})}">see car</a></td>
+
 
             </tr>
 
