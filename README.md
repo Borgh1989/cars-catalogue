@@ -2,7 +2,7 @@
 Web приложение Каталог автомобилей  
 ***
 Использованы следующие технологии:  
-Java 
+Java, 
 Spring Boot, Spring Data JPA, Spring MVC  
 сборщик - Maven  
 БД - H2 embedded  
