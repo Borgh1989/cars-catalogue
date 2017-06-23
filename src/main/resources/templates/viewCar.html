@@ -8,21 +8,25 @@
     </head>
 
     <body>
-        <h1>VIEW CAR</h1>
+        <h1>REVIEW CAR</h1>
         <!--/*@thymesVar id="createdCar" type="com.andrewYurkevich.model.Car"*/-->
 
-        <p th:text="'id of car is '+${createdCar.id}"></p>
-        <p th:text="'name of car is '+${createdCar.name}"></p>
-        <p th:text="'speed of car is '+${createdCar.speed}"></p>
-        <p th:text="'engine capacity of car is '+${createdCar.volume}"></p>
-        <p th:text="'type of car is '+${createdCar.type}"></p>
+        <div class="block">
+
+            <p th:text="'id of car is '+${viewCar.id}"></p>
+            <p th:text="'name of car is '+${viewCar.name}"></p>
+            <p th:text="'speed of car is '+${viewCar.speed}"></p>
+            <p th:text="'engine capacity of car is '+${viewCar.volume}"></p>
+            <p th:text="'type of car is '+${viewCar.type}"></p>
 
 
 
-        <a th:href="@{/deleteCar/(id=${createdCar.id})}">delete Car</a>
+            <a th:href="@{/deleteCar/(id=${viewCar.id})}">delete Car</a>
 
-        <a th:href="@{/newCar}">create new Car</a>
-        <a th:href="@{/}">main page</a>
-        <a th:href="@{/updateCar/(id=${createdCar.id})}">update Car</a>
+            <a th:href="@{/newCar}">create new Car</a>
+            <a th:href="@{/}">main page</a>
+            <a th:href="@{/updateCar/(id=${viewCar.id})}">update Car</a>
+        </div>
+
     </body>
 </html>
