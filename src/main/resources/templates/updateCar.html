@@ -12,29 +12,30 @@
 <body>
     <h1>UPDATE CAR</h1>
     <!--/*@thymesVar id="createdCar" type="com.andrewYurkevich.model.Car"*/-->
+    <div class="block">
+
+        <form th:action="@{/updatedCar/(id=${editCar.id})}" method="post" th:object="${editCar}">
+            <p th:text="'id of car is '+${editCar.id}"></p>
+
+            <p><label><input type="text" value="${editCar.name}" th:field="*{name}"/></label></p>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+
+            <p><label><input type="text" value="${editCar.speed}" th:field="${editCar.speed}"/></label></p>
+            <p th:if="${#fields.hasErrors('speed')}" th:errors="*{speed}">Name Error</p>
+
+            <p><label><input type="text" value="${editCar.volume}" th:field="${editCar.volume}"/></label></p>
+            <p th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">Name Error</p>
+
+            <p><label><input type="text" value="${editCar.type}" th:field="${editCar.type}"/></label></p>
+            <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Name Error</p>
+
+            <p><input type="submit" value="Submit" /></p>
+
+        </form>
 
 
-    <form th:action="@{/updatedCar/(id=${editCar.id})}" method="post" th:object="${editCar}">
-        <p th:text="'id of car is '+${editCar.id}"></p>
+        <p><a href="/">main page</a> <button type="reset" onclick="history.back()">Back</button></p>
 
-        <p><label><input type="text" value="${editCar.name}" th:field="*{name}"/></label></p>
-        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
-
-        <p><label><input type="text" value="${editCar.speed}" th:field="${editCar.speed}"/></label></p>
-        <p th:if="${#fields.hasErrors('speed')}" th:errors="*{speed}">Name Error</p>
-
-        <p><label><input type="text" value="${editCar.volume}" th:field="${editCar.volume}"/></label></p>
-        <p th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">Name Error</p>
-
-        <p><label><input type="text" value="${editCar.type}" th:field="${editCar.type}"/></label></p>
-        <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Name Error</p>
-
-        <input type="submit" value="Submit" />
-    </form>
-
-
-
-    <a href="/">main page</a>
-    <button type="reset" onclick="history.back()">Back</button>
+    </div>
 </body>
 </html>

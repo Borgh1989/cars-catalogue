@@ -11,17 +11,21 @@
         <h1>CAR SUCCESSFUL CREATED</h1>
         <!--/*@thymesVar id="createdCar" type="com.andrewYurkevich.model.Car"*/-->
 
-        <p th:text="'id of car is '+${createdCar.id}"></p>
-        <p th:text="'name of car is '+${createdCar.name}"></p>
-        <p th:text="'speed of car is '+${createdCar.speed}"></p>
-        <p th:text="'volume of car is '+${createdCar.volume}"></p>
-        <p th:text="'type of car is '+${createdCar.type}"></p>
+        <div class="block">
+
+            <p th:text="'id of car is '+${createdCar.id}"></p>
+            <p th:text="'name of car is '+${createdCar.name}"></p>
+            <p th:text="'speed of car is '+${createdCar.speed}"></p>
+            <p th:text="'engine capacity of car is '+${createdCar.volume}"></p>
+            <p th:text="'type of car is '+${createdCar.type}"></p>
 
 
 
-        <a th:href="@{/deleteCar/(id=${createdCar.id})}">delete Car</a>
+            <a th:href="@{/deleteCar/(id=${createdCar.id})}">delete Car</a>
 
-        <a href="/newCar">create new Car</a>
-        <a href="/">main page</a>
+            <a href="/newCar">create new Car</a>
+            <a href="/">main page</a>
+        </div>
+
     </body>
 </html>

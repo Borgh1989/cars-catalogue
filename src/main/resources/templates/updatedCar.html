@@ -12,16 +12,18 @@
 <body>
 <h1>UPDATED CAR SUCCESSFUL</h1>
 
-<p th:text="'id of car is '+${createdCar.id}"></p>
-<p th:text="'name of car is '+${createdCar.name}"></p>
-<p th:text="'speed of car is '+${createdCar.speed}"></p>
-<p th:text="'volume of car is '+${createdCar.volume}"></p>
-<p th:text="'type of car is '+${createdCar.type}"></p>
+    <div class="block">
+        <p th:text="'id of car is '+${createdCar.id}"></p>
+        <p th:text="'name of car is '+${createdCar.name}"></p>
+        <p th:text="'speed of car is '+${createdCar.speed}"></p>
+        <p th:text="'engine capacity of car is '+${createdCar.volume}"></p>
+        <p th:text="'type of car is '+${createdCar.type}"></p>
 
 
+        <a href="/">main page</a>
+        <button type="reset" onclick="history.back()">Back</button>
 
+    </div>
 
-<a href="/">main page</a>
-<button type="reset" onclick="history.back()">Back</button>
 </body>
 </html>

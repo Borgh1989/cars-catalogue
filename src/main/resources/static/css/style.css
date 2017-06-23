@@ -20,5 +20,13 @@ table {
 
 body {
     background: #d8f0ff;
+    max-width: 100%;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.block {
+    font-family: Arial, serif;
+    text-align: center;
 }
 

@@ -12,25 +12,32 @@
         <h1>CREATE CAR</h1>
 
         <!--/*@thymesVar id="car" type="com.andrewYurkevich.model.Car"*/-->
-        <form action="#" th:action="@{/newCar}" th:object="${car}" method="post">
-            <p>Name <label><input type="text" th:field="*{name}" /></label></p>
-            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+        <div class="block">
+            <form action="#" th:action="@{/newCar}" th:object="${car}" method="post">
+                <p>Name</p>
+                <p><label><input type="text" th:field="*{name}" /></label></p>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
 
-            <p>Speed <label><input type="text" th:field="*{speed}" /></label></p>
-            <p th:if="${#fields.hasErrors('speed')}" th:errors="*{speed}">Name Error</p>
+                <p>Speed</p>
+                <p><label><input type="text" th:field="*{speed}" /></label></p>
+                <p th:if="${#fields.hasErrors('speed')}" th:errors="*{speed}">Name Error</p>
 
-            <p>Volume <label><input type="text" th:field="*{volume}"/></label></p>
-            <p th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">Name Error</p>
+                <p>Engine capacity</p>
+                <p><label><input type="text" th:field="*{volume}"/></label></p>
+                <p th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}">Name Error</p>
 
-            <p>Type <label><input type="text" th:field="*{type}"/></label></p>
-            <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Name Error</p>
+                <p>Type</p>
+                <p><label><input type="text" th:field="*{type}"/></label></p>
+                <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Name Error</p>
 
 
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            </form>
 
 
             <button type="reset" onclick="history.back()">Back</button>
+
+        </div>
 
 
     </body>
