@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,7 +73,7 @@ public class CarControllerTest {
         BindingResult bindingResult = mock(BindingResult.class);
         when(carService.addCar(expectedCar)).thenReturn(expectedCar);
         //testing
-        String pageName = sut.viewCar(expectedCar, bindingResult, model);
+        String pageName = sut.createCar(expectedCar, bindingResult, model);
         //validate
         assertEquals("createdCar", pageName);
         assertSame(expectedCar, model.asMap().get("createdCar"));
@@ -117,6 +118,50 @@ public class CarControllerTest {
         //validate
         assertEquals("redirect:/", pageName);
         assertSame(expectedCars, model.asMap().get("carList"));
+    }
+
+    @Test
+    public void test_searchCarByName_resultCarByName() throws Exception {
+        //prepare
+        String name = "carByName";
+        Car expectedCar = mock(Car.class);
+        when(carService.getByName(name)).thenReturn(expectedCar);
+        //testing
+        String pageName = sut.findCarByName(name, model);
+        //validate
+        assertEquals("viewCar", pageName);
+        assertSame(expectedCar, model.asMap().get("viewCar"));
+    }
+
+    @Test
+    public void test_viewCarById_resultCarById() throws Exception {
+        //prepare
+        Car expectedCar = mock(Car.class);
+        int id = 1;
+        when(carService.getById(id)).thenReturn(expectedCar);
+        //testing
+        String pageName = sut.viewCar(id, model);
+        //validate
+        assertEquals("viewCar", pageName);
+        assertSame(expectedCar, model.asMap().get("viewCar"));
+    }
+
+    @Test
+    public void test_sortCarsByparam_resultSortedCarsList () throws Exception {
+        //prepare
+        Car testCar = mock(Car.class);
+        String sortParam = "name";
+        List<Car> expectedSortCars = Arrays.asList(testCar, testCar, testCar);
+
+
+        Sort testSort = new Sort(Sort.Direction.ASC, sortParam);
+        when(carService.getAll(testSort)).thenReturn(expectedSortCars);
+        //testing
+        String pageName = sut.sortingByParameters(sortParam, model);
+        //validate
+        assertEquals("mainPage", pageName);
+        assertSame(expectedSortCars, model.asMap().get("carList"));
+
     }
 
 }

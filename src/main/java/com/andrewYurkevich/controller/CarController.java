@@ -32,12 +32,12 @@ public class CarController {
         return "mainPage";
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)                          //need test!!!!!!!!!!!
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String findCarByName(@RequestParam("search") String carName, Model model) {
 
             Car findCar = this.carService.getByName(carName);
             if(findCar!=null) {
-                model.addAttribute("createdCar", findCar);
+                model.addAttribute("viewCar", findCar);
                 return "viewCar";
             }
             return "redirect:/";
@@ -53,10 +53,10 @@ public class CarController {
         return "mainPage";
     }
 
-    @RequestMapping(value = "/viewCar", method = RequestMethod.GET)                         //need test!!!!!!!!!!!
+    @RequestMapping(value = "/viewCar", method = RequestMethod.GET)
     public String viewCar(int id, Model model) {
 
-        model.addAttribute("createdCar", this.carService.getById(id));
+        model.addAttribute("viewCar", this.carService.getById(id));
         return "viewCar";
     }
 
@@ -70,7 +70,7 @@ public class CarController {
     }
 
     @RequestMapping(value = "/newCar", method = RequestMethod.POST)
-    public String viewCar(@Valid Car car, BindingResult bindingResult,  Model model) {
+    public String createCar(@Valid Car car, BindingResult bindingResult, Model model) {
 
         if(bindingResult.hasErrors()) {
 
