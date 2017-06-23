@@ -19,7 +19,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car addCar(Car car) {
-
         return carRepository.saveAndFlush(car);
     }
 

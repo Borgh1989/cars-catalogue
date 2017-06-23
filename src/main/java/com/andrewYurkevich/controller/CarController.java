@@ -27,8 +27,8 @@ public class CarController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main(Model model) {
-        model.addAttribute("carList", this.carService.getAll());
 
+        model.addAttribute("carList", this.carService.getAll());
         return "mainPage";
     }
 
@@ -47,9 +47,8 @@ public class CarController {
     public String sortingByParameters(@RequestParam("sorting") String sortParam, Model model) {
         Sort sort = new Sort(Sort.Direction.ASC, sortParam);
         List<Car> sortListCars = this.carService.getAll(sort);
+
         model.addAttribute("carList", sortListCars);
-
-
         return "mainPage";
     }
 
@@ -65,7 +64,6 @@ public class CarController {
     public String newCar(Model model) {
 
         model.addAttribute("car", new Car());
-
         return "newCar";
     }
 
@@ -73,7 +71,6 @@ public class CarController {
     public String createCar(@Valid Car car, BindingResult bindingResult, Model model) {
 
         if(bindingResult.hasErrors()) {
-
             return "newCar";
         }
         this.carService.addCar(car);
@@ -108,6 +105,7 @@ public class CarController {
     @RequestMapping(value = "/deleteCar", method = RequestMethod.GET)
     public String deleteCar(int id, Model model) {
         this.carService.delete(id);
+
         model.addAttribute("carList", this.carService.getAll());
         return "redirect:/";
     }
