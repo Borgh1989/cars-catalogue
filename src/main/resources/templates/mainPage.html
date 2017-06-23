@@ -12,14 +12,14 @@
     <h1>CAR CATALOGUE</h1>
     <h2>Main page</h2>
 
-    <form th:action="@{/search}" method="get">
-    <p><select name="search">
-    <option th:disabled="${#void}" >select attribute</option>
-    <option th:value="${'AUDI'}">name</option>
+    <form th:action="@{/sorting}" method="get">
+    <p><select name="sorting">
+        <option th:disabled="${''}" >select attribute</option>
+        <option th:value="${'name'}">name</option>
+        <option th:value="${'speed'}">speed</option>
+        <option th:value="${'volume'}">volume</option>
+        <option th:value="${'type'}">type</option>
 
-    <!--<option ></option>-->
-    <!--<option ></option>-->
-    <!--<option ></option>-->
 
     </select></p>
     <p><input type="submit" value="sorting"/></p>
@@ -37,7 +37,7 @@
         <h3>List of cars</h3>
         <!--/*@thymesVar id="carList" type="com.andrewYurkevich.model.Car"*/-->
 
-        <form action="/newCar">
+        <form th:action="@{/newCar}">
             <button type="submit">create new car</button>
         </form>
         <br/>

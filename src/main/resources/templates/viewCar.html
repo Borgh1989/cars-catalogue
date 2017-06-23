@@ -21,7 +21,8 @@
 
         <a th:href="@{/deleteCar/(id=${createdCar.id})}">delete Car</a>
 
-        <a href="/newCar">create new Car</a>
-        <a href="/">main page</a>
+        <a th:href="@{/newCar}">create new Car</a>
+        <a th:href="@{/}">main page</a>
+        <a th:href="@{/updateCar/(id=${createdCar.id})}">update Car</a>
     </body>
 </html>

@@ -3,6 +3,7 @@ package com.andrewYurkevich.controller;
 import com.andrewYurkevich.model.Car;
 import com.andrewYurkevich.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Андрей on 13.06.2017.
@@ -39,6 +41,16 @@ public class CarController {
                 return "viewCar";
             }
             return "redirect:/";
+    }
+
+    @RequestMapping(value = "/sorting", method = RequestMethod.GET)                         //need test!!!!!!!!!!!
+    public String sortingByParameters(@RequestParam("sorting") String sortParam, Model model) {
+        Sort sort = new Sort(Sort.Direction.ASC, sortParam);
+        List<Car> sortListCars = this.carService.getAll(sort);
+        model.addAttribute("carList", sortListCars);
+
+
+        return "mainPage";
     }
 
     @RequestMapping(value = "/viewCar", method = RequestMethod.GET)                         //need test!!!!!!!!!!!
